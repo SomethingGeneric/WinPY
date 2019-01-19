@@ -36,7 +36,7 @@ namespace WindowsPY
 
             MessageBox.Show("We're going to download Python 3 for you. The installer will start. Please make sure to install for all users, and click the check boxes to add to PATH, and install PIP");
     //heckin line length trash dingbat
-            webClient.DownloadFile("https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe", @"c:\temp\pythoninst.exe");
+            webClient.DownloadFile("https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe", @"C:\WinPY\pythoninst.exe");
 
             Process myProcess = new Process();
 
@@ -52,8 +52,7 @@ namespace WindowsPY
                // Fuck off abt line length
             MessageBox.Show("Now we're going to download a tool called git, as most full python scripts are git repositories. Please accept all default options.");
 
-            webClient.DownloadFile("https://github.com/git-for-windows/git/releases/download/v2.20.1.windows.1/Git-2.20.1-64-bit.exe",
-                @"c:\temp\gitinst.exe");
+            webClient.DownloadFile("https://github.com/git-for-windows/git/releases/download/v2.20.1.windows.1/Git-2.20.1-64-bit.exe",@"C:\WinPY\gitinst.exe");
                 // aaaaaaaaaaaaaaaaaAAAAAAAAAAAAAA
 
             Process getgit = new Process();
@@ -62,7 +61,7 @@ namespace WindowsPY
             //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             getgit.Start();
 
-            MessageBox.Show("All done!");
+            MessageBox.Show("All done!","Status",MessageBoxButtons.OK);
         }
 
         private void button2_Click(object sender, EventArgs e)
