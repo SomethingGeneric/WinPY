@@ -34,27 +34,34 @@ namespace WindowsPY
             process.StartInfo = startInfo;
             process.Start();
 
-            MessageBox.Show("We're going to download Python 3 for you. The installer will start. Please make sure to install for all users, and click the check boxes to add to PATH, and install PIP");
-
+            MessageBox.Show("We're going to download Python 3 for you. The installer will start. 
+                Please make sure to install for all users, and click the check boxes to add to PATH, and install PIP");
+    //heckin line length trash dingbat
             webClient.DownloadFile("https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe", @"c:\temp\pythoninst.exe");
 
             Process myProcess = new Process();
 
             myProcess.StartInfo.UseShellExecute = false;
-            myProcess.StartInfo.FileName = "C:\\WinPy\\pythoninst.exe";
+            //escape sequences dingbat
+            myProcess.StartInfo.FileName = @"C:\\WinPy\\pythoninst.exe";
             myProcess.Start();
             // This code assumes the process you are starting will terminate itself.
             // Given that is is started without a window so you cannot terminate it
             // on the desktop, it must terminate itself or you can do it programmatically
             // from this application using the Kill method.
 
-            MessageBox.Show("Now we're going to download a tool called git, as most full python scripts are git repositories. Please accept all default options.");
+//aaaaaaaaaaaaaaaaaaaa
+            MessageBox.Show("Now we're going to download a tool called git, 
+                as most full python scripts are git repositories. Please accept all default options.");
 
-            webClient.DownloadFile("https://github.com/git-for-windows/git/releases/download/v2.20.1.windows.1/Git-2.20.1-64-bit.exe",@"c:\temp\gitinst.exe");
+            webClient.DownloadFile("https://github.com/git-for-windows/git/releases/download/v2.20.1.windows.1/Git-2.20.1-64-bit.exe",
+                @"c:\temp\gitinst.exe");
+                // aaaaaaaaaaaaaaaaaAAAAAAAAAAAAAA
 
             Process getgit = new Process();
             getgit.StartInfo.UseShellExecute = false;
-            getgit.StartInfo.FileName = "C:\\WinPy\\gitinst.exe";
+            getgit.StartInfo.FileName = @"C:\WinPy\gitinst.exe";
+            //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             getgit.Start();
 
             MessageBox.Show("All done!");
@@ -64,48 +71,78 @@ namespace WindowsPY
         {
             string url = urlbox.Text;
             string path = pathbox.Text;
-            Process git = new Process();
-            ProcessStartInfo gitinfo = new ProcessStartInfo();
+            
 
-            gitinfo.FileName = "git.exe";
-            gitinfo.Arguments = "clone " + url + " C:\\WinPy\\" + path;
-            git.StartInfo = gitinfo;
-            git.Start();
+/*
+    DinGbAt Don't just assume that the boxes will be filled on button pressed make sure that they are actually filled first
+    Use a messagebox thing to indicate what do, and if boxes not filled don't do
+*/
+            if(url != "" && path != ""){
+                Process git = new Process();
+                ProcessStartInfo gitinfo = new ProcessStartInfo();
+                gitinfo.FileName = "git.exe";
+                gitinfo.Arguments = "clone " + url + @" C:\WinPy\" + path;
+                //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                git.StartInfo = gitinfo;
+                git.Start();
 
-            Process.Start(@"C:\\WinPY\\");
+                Process.Start(@"C:\WinPY\");
 
-            MessageBox.Show("Now click the next button, unless the project page says that the requirements are in a different file.");
-            thiccboi.GlobalVar = path;
+                MessageBox.Show("Now click the next button, 
+                    unless the project page says that the requirements are in a different file.");
+                thiccboi.GlobalVar = path;
+            }else{
+                MessageBox.Show("Enter the bois before do", "Ya done hecked up LOL", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string final = "C:\\WinPY\\" + thiccboi.GlobalVar + "\\" + textBox1.Text;
-            Console.WriteLine(final);
-            Directory.SetCurrentDirectory(@"C:\\WinPY\\" + thiccboi.GlobalVar + "\\");
-            Process pip = new Process();
-            ProcessStartInfo pipinfo = new ProcessStartInfo();
-            pipinfo.FileName = "python";
-            pipinfo.Arguments = "-m pip install -r " + final;
-            pip.StartInfo = pipinfo;
-            pip.Start();
+            if(thiccboi.GlobalVar != ""){
+                string final = @"C:\WinPY\" + thiccboi.GlobalVar + @"\" + textBox1.Text;
+                //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                Console.WriteLine(final);
+            
+                Directory.SetCurrentDirectory(@"C:\WinPY\" + thiccboi.GlobalVar + @"\");
+                //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                Process pip = new Process();
+                ProcessStartInfo pipinfo = new ProcessStartInfo();
+                pipinfo.FileName = "python";
+                pipinfo.Arguments = "-m pip install -r " + final;
+                pip.StartInfo = pipinfo;
+                pip.Start();
+            }else{
+                MessageBox.Show("do other thing before do", "Ya done hecked up LOL", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            thiccboi.GlobalVar = overridebox.Text;
+                thiccboi.GlobalVar = overridebox.Text;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             string script = mainbox.Text;
-            Directory.SetCurrentDirectory(@"C:\\WinPY\\" + thiccboi.GlobalVar + "\\");
-            Process python = new Process();
-            ProcessStartInfo pyinfo = new ProcessStartInfo();
-            pyinfo.FileName = "python";
-            pyinfo.Arguments = script;
-            python.StartInfo = pyinfo;
-            python.Start();
+            if(thiccboi.GlobalVar != ""){
+                Directory.SetCurrentDirectory(@"C:\WinPY\" + thiccboi.GlobalVar + @"\");
+                //aaa
+                Process python = new Process();
+                ProcessStartInfo pyinfo = new ProcessStartInfo();
+                pyinfo.FileName = "python";
+                pyinfo.Arguments = script;
+                python.StartInfo = pyinfo;
+                python.Start();
+            }
+            else{
+                MessageBox.Show("do other thing before do", "Ya done hecked up LOL", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
